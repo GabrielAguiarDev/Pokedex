@@ -1,26 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react';
+import './CardPokemon.css'
 
-function CardPokemon({ url }) {
+const CardPokemon = ({ obj }) => {
 
-  const [pokemon, setPokemon] = useState("")
-
-  useEffect(() => {
-
-    fetch(`${url}`, {
-      method: "GET"
-    })
-    .then(res => res.json())
-    .then(data => {
-      setPokemon(data)
-    })
-    .catch(e => console.log(e))
-
-  }, [url])
-  console.log(pokemon)
-
+  console.log(obj)
   return (
-    <div>
-      {pokemon.name}
+    <div className='card--pokemon'>
+      <div className='card--image'>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg" alt={obj.name} />
+      </div>
+      <div className='card--info'>
+        <h1>{obj.name}</h1>
+        <p>Eletric</p>
+        <p>{obj.id}</p>
+      </div>
     </div>
   )
 }
