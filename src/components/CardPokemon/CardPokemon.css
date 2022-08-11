@@ -1,16 +1,46 @@
+.Container--Card {
+    position: relative;
+}
+
+.Container--Card:hover .card--pokemon {
+    margin-left: -150px;
+}
+
 .card--pokemon {
-    background: #fbfba3e0;
     width: 209px;
     height: 300px;
     border-radius: 26px;
-    box-shadow: 3px 3px 3px #00000036;
+    box-shadow: 13px 17px 15px #00000041;
+    border: 10px solid;
+    position: relative;
+    transition: all ease 0.3s 1s;
+    z-index: 2;
+}
+
+.card--info {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: block;
+    border-radius: 26px;
+    box-shadow: 4px 4px 5px #00000041;
+    width: 209px;
+    height: 300px;
+    padding-left: 47px;
+    z-index: 1;
+}
+
+.card--info h2 {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 0px 30px 0px;
+}
+
+.card--info p {
+    margin-left: 16px;
 }
 
 .card--image {
-    border-left: 2px solid;
-    border-top: 2px solid;
-    border-right: 2px solid;
-    border-color: #ff86008c;
     border-radius: 26px 26px 0px 0px;
     display: flex;
     align-items: center;
@@ -19,24 +49,199 @@
 }
 
 .card--image img {
-    width: 100px;
+    width: 115px;
     margin-top: 6px;
     margin-bottom: 19px;
 }
 
-.card--info {
-    margin-top: -21px;
-    background-color: #e2e27f;
-    height: 150px;
-    border-radius: 30px;
-    box-shadow: 0px -3px 4px orange;
+.card--description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 9px;
+    height: 110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.card--info p {
+.card--description h1 {
+    font-family: 'Mouse Memoirs', sans-serif;
+    margin-top: 10px;
+}
+
+.card--description p {
     font-weight: bold;
     margin-top: 7px;
+}
+
+.grass {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/grass.png');
+    border-color: #1a8a3fd5;
+}
+
+.grass .card--description {
+    background-color: #1a8a3fd5;
+}
+
+.grass ~ .card--info {
+    background-color: #35eb72d5;
+}
+
+.bug {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/bug.png');
+    border-color: #60643ee0;
+}
+
+.bug .card--description {
+    background-color: #60643ee0;
+}
+
+.bug ~ .card--info {
+    background-color: #a0a768e0;
+}
+
+.fire {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/fire.png');
+    border-color: #ad3232e0;
+}
+
+.fire .card--description {
+    background-color: #ad3232e0;
+}
+
+.fire ~ .card--info {
+    background-color: #f14b4be0;
+}
+
+.water {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/water.png');
+    border-color: #3276ade0;
+}
+
+.water .card--description {
+    background-color: #3276ade0;
+}
+
+.water ~ .card--info {
+    background-color: #5dadeee0;
+}
+
+.electric {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/electric.png');
+    border-color: #d8d520e0;
+}
+
+.electric .card--description {
+    background-color: #d8d520e0;
+}
+
+.electric ~ .card--info {
+    background-color: #f1f096e0;
+}
+
+.psychic {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/psychic.png');
+    border-color: #0d4f52e0;
+}
+
+.psychic .card--description {
+    background-color: #0d4f52e0;
+}
+
+.psychic ~ .card--info {
+    background-color: #1f9ba1e0;
+}
+
+.ghost {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/ghost.png');
+    border-color: #531c6de0;
+}
+
+.ghost .card--description {
+    background-color: #531c6de0;
+}
+
+.ghost ~ .card--description {
+    background-color: #9637c2e0;
+}
+
+.rock {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/rock.png');
+    border-color: #303d50e0;
+}
+
+.rock .card--description {
+    background-color: #303d50e0;
+}
+
+.rock ~ .card--info {
+    background-color: #556a8ae0;
+}
+
+.normal {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/normal.png');
+    border-color: #f3cad8e0;
+}
+
+.normal .card--description {
+    background-color: #f3cad8e0;
+}
+
+.normal ~ .card--info {
+    background-color: #fcf1f5e0;
+}
+
+.ice {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/ice.png');
+    border-color: #28b3d6e0;
+}
+
+.ice .card--description {
+    background-color: #28b3d6e0;
+}
+
+.ice ~ .card--info {
+    background-color: #77d7f0e0;
+}
+
+.fighting {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/fighting.png');
+    border-color: #615038e0;
+}
+
+.fighting .card--description {
+    background-color: #615038e0;
+}
+
+.fighting ~ .card--info {
+    background-color: #a18761e0;
+}
+
+.poison {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/poison.png');
+    border-color: #6b2362;
+}
+
+.poison .card--description {
+    background-color: #6b2362;
+}
+
+.poison ~ .card--info {
+    background-color: #a54999;
+}
+
+.fairy {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/fairy.png');
+    border-color: #da46c6;
+}
+
+.fairy .card--description {
+    background-color: #da46c6;
+}
+
+.fairy ~ .card--info {
+    background-color: #e49ada;
 }

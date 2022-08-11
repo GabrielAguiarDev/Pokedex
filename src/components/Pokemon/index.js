@@ -5,40 +5,47 @@ import CardPokemon from '../CardPokemon'
 import './Pokemon.css'
 
 const PokemonList = () => {
-  const [pokemonData, setPokemonData] = useState([])
 
-  const getPokemonList = async () => {
-    try {
-      const url = `https://pokeapi.co/api/v2/pokemon/pikachu`
-      const res = await fetch(url)
-      const data = await res.json()
-      setPokemonData(data)
-      
-    } catch (e) {
-      console.log(e)
+  const [allPokemon, setAllPokemon] = useState([])
+  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+
+  const getAllPokemons = async () => {
+    const res = await fetch(loadMore)
+    const data = await res.json()
+    setLoadMore(data.next)
+
+    function createPokemonObject(result) {
+      result.forEach( async (pokemon) => {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        const data = await res.json()
+
+        setAllPokemon(currentList => [...currentList, data])
+      });
     }
+    createPokemonObject(data.results)
+    console.log(allPokemon)
   }
   useEffect(() => {
-    getPokemonList()
+    getAllPokemons()
   }, [])
-
-  // Obtenho um erro ao rodar a aplicação, o react faz duas chamadas no fetch e a primeira chamada não esta obtendo sucesso, o que resulta em um erro para o componente CardPokemon, pois ele executa uma função map(), e como a primeira chamada não retorna nada, ele gera um erro.
 
   return (
     <main>
-        <h1>Lista de pokemons</h1>
         <div className='pokemon--search'>
           <input type="text" placeholder='Digite o nome do Pokemon' />
           <button>Buscar</button>
         </div>
-        {pokemonData &&  (
-          <section>
-            <CardPokemon
-              key={pokemonData.id} 
-              obj={pokemonData}
-            />
-          </section>
-        )}
+          <div className='Container--pokedex'>
+            { allPokemon.map((pokemon, index) =>
+              <CardPokemon
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}
+              type={pokemon.types[0].type.name}
+              key={index}
+              />
+            )}
+          </div>
     </main>
   )
 

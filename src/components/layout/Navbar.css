@@ -3,7 +3,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    background-color: #275769;
+    padding: 0px 60px;
+    background-color: #ffb200;
+    box-shadow: 0px 3px 9px #182a8a;
 }
 
 .nav--logo {
@@ -14,7 +16,7 @@ nav {
 }
 
 .nav--logo img {
-    width: 150px;
+    width: 176px;
 }
 
 ul {
@@ -43,7 +45,7 @@ ul li a {
 }
 
 ul li a:hover {
-    color: #ffb000;
+    color: #5764a8;
 }
 
 ul li a svg {

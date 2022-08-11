@@ -1,19 +1,25 @@
 import React from 'react';
 import './CardPokemon.css'
 
-const CardPokemon = ({ obj }) => {
-
-  console.log(obj)
+const CardPokemon = ({ id, name, image, type }) => {
   return (
-    <div className='card--pokemon'>
-      <div className='card--image'>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg" alt={obj.name} />
+    <div className='Container--Card'>
+      <div className={`card--pokemon ${type}`}>
+        <div className='card--image'>
+          <img src={image} alt={name} />
+        </div>
+        <div className='card--description'>
+          <p>#0{id}</p>
+          <h1>{name}</h1>
+          <p>{type}</p>
+        </div>
       </div>
-      <div className='card--info'>
-        <h1>{obj.name}</h1>
-        <p>Eletric</p>
-        <p>{obj.id}</p>
-      </div>
+        <div className='card--info'>
+          <h2>Especificações</h2>
+          <p>Teste</p>
+          <p>Teste</p>
+          <p>Teste</p>
+        </div>
     </div>
   )
 }

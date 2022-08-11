@@ -7,14 +7,14 @@ const index = () => {
   return (
     <nav>
       <div className="nav--logo">
-        <a href="/"><img src={process.env.PUBLIC_URL + "/pokedex-logo.png"} alt="pokedex" /></a>
+        <a href="/"><img src={process.env.PUBLIC_URL + "/pokemon-logo.png"} alt="pokedex" /></a>
       </div>
       <ul>
         <li>
           <a href="/"><MdHome /> Home</a>
         </li>
         <li>
-          <a href="/pokemon"><MdCatchingPokemon /> Pokemon</a>
+          <a href="/pokemon"><MdCatchingPokemon /> Pokédex</a>
         </li>
       </ul>
     </nav>
