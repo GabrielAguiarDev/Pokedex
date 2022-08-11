@@ -1,0 +1,23 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    background-color: #2f92a5;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px #00000046;
+    transition: all ease 0.3s;
+    opacity: 1;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn svg {
+    margin-left: 10px;
+}

@@ -1,0 +1,23 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+section h1 {
+    font-size: 37px;
+}
+
+section p {
+    font-size: 18px;
+    max-width: 65%;
+    text-align: center;
+    margin-top: 25px;
+}
+
+section img {
+    margin-top: 25px;
+    width: 250px;
+}

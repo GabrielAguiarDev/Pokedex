@@ -1,6 +1,6 @@
 import React from "react";
 
-import LinkButton from "../layout/LinkButton";
+import LinkButton from "../../Form/LinkButton";
 
 import './Home.css'
 

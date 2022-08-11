@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import NavBar from './components/layout/Navbar'
-import Footer from './components/layout/Footer'
+import NavBar from './components/Layout/Navbar'
+import Footer from './components/Layout/Footer'
 
-import Home from './components/Home'
-import Pokemon from './components/Pokemon'
+import Home from './components/pages/Home'
+import Pokemon from './components/pages/Pokemon'
 
 import './App.css';
 
