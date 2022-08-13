@@ -16,9 +16,10 @@ const CardPokemon = ({ order, name, image, type, experience, skills, statistics 
       </div>
         <div className='card--info'>
           <h2>Especificações</h2>
-          <p>Nível de experiência: {experience}</p>
+          <p>Nível de experiência: <span>{experience}</span>
+            </p>
+          {statistics.map(statistc => <p>{statistc.stat.name}: <span>{statistc.base_stat}</span></p>)}
           <p>Habilidades: {skills.map(skill => <span>{skill.ability.name}{', '}</span>)}</p>
-          {statistics.map(statistc => <p>{statistc.stat.name}: {statistc.base_stat}</p>)}
         </div>
     </div>
   )

@@ -9,6 +9,7 @@ const PokemonList = () => {
   const [pokemon, setPokemon] = useState([]);
   const [getURL, setGetURL] = useState('https://pokeapi.co/api/v2/pokemon/');
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true)
 
   const getPokemon = useCallback(async () => {
     const pokemonFromAPI = await fetch(getURL);
@@ -19,6 +20,7 @@ const PokemonList = () => {
         `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
       );
       const data = await res.json();
+      setLoading(false)
       return data
     });
 
@@ -83,6 +85,7 @@ const PokemonList = () => {
         </form>
       </div>
       <div className="Container--pokedex">
+        {loading && <Loader />}
         {pokemon &&
           filteredPokemon.map((pokemon, index) => (
             <CardPokemon
@@ -96,7 +99,6 @@ const PokemonList = () => {
             statistics={pokemon.stats}
             />
           ))}
-          {!pokemon && <Loader />}
       </div>
       <button
           className="btn"
