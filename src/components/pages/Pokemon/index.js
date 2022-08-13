@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import CardPokemon from "../../CardPokemon";
 import Loader from "../../Form/Loader";
@@ -6,50 +6,68 @@ import Loader from "../../Form/Loader";
 import "./Pokemon.css";
 
 const PokemonList = () => {
-  const [allPokemon, setAllPokemon] = useState([]);
-  const [loadMore, setLoadMore] = useState("https://pokeapi.co/api/v2/pokemon?limit=20");
-  const [loading, setLoading] = useState(true)
-  const [search, setSearch] = useState("");
+  const [pokemon, setPokemon] = useState([]);
+  const [getURL, setGetURL] = useState('https://pokeapi.co/api/v2/pokemon/');
+  const [search, setSearch] = useState('');
 
-  const getAllPokemons = async () => {
-    const res = await fetch(loadMore);
-    const data = await res.json();
-    setLoadMore(data.next);
+  const getPokemon = useCallback(async () => {
+    const pokemonFromAPI = await fetch(getURL);
+    const data = await pokemonFromAPI.json();
 
-    function createPokemonObject(result) {
-      result.forEach(async (pokemon) => {
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await res.json();
-        setLoading(false)
-        setAllPokemon((currentList) => [...currentList, data]);
-      });
-    }
-    createPokemonObject(data.results);
-  };
+    const allPokemon = data.results.map(async (pokemon) => {
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+      );
+      const data = await res.json();
+      return data
+    });
 
-  async function submitSearch(e) {
-    e.preventDefault();
-    const searchApi = search.toLowerCase()
-    async function main() {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchApi}`)
-      const data = await res.json()
-      
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        setLoading(false)
-        setAllPokemon(data)
+    setGetURL(data.next);
+    Promise.all([...allPokemon]).then((res) => {
+      const removerPokemonRepetidos = []
+      res.forEach(p => {
+        if(!pokemon.find(poke => poke.name === p.name)){
+          removerPokemonRepetidos.push(p)
+        }
       })
-      .catch(e => console.log(e))
-    }
-    await main();
-  }
+
+      setPokemon([...removerPokemonRepetidos, ...pokemon].sort((a, b) => {
+        if (a.order > b.order) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }));
+    });
+  }, [pokemon, getURL]);
+
 
   useEffect(() => {
-    getAllPokemons();
+    getPokemon();
   }, []);
+
+  const submitSearch = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!pokemon.find((pokemon) => pokemon.name === search)) {
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`
+        );
+        const data = await res.json();
+        setPokemon(
+          [...pokemon, data].sort((a, b) => {
+            if (a.order > b.order) {
+              return 1;
+            } else {
+              return -1;
+            }
+          })
+        );
+      }
+    },
+    [pokemon, search]
+  );
+  const filteredPokemon = pokemon.filter(p => p.name.includes(search))
 
   return (
     <main>
@@ -65,16 +83,27 @@ const PokemonList = () => {
         </form>
       </div>
       <div className="Container--pokedex">
-          {allPokemon && allPokemon && allPokemon.map((pokemon, index) => (
+        {pokemon &&
+          filteredPokemon.map((pokemon, index) => (
             <CardPokemon
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}
-              type={pokemon.types[0].type.name}
-              key={index}
+            key={index}
+            order={pokemon.order}
+            name={pokemon.name}
+            image={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}
+            type={pokemon.types[0].type.name}
+            experience={pokemon.base_experience}
+            skills={pokemon.abilities}
+            statistics={pokemon.stats}
             />
           ))}
+          {!pokemon && <Loader />}
       </div>
+      <button
+          className="btn"
+          onClick={() => getPokemon()}
+        >
+          + Pokemons
+      </button>
     </main>
   );
 };

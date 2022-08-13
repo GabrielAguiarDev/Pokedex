@@ -4,6 +4,12 @@ main {
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
+    min-height: 73vh;
+}
+
+main button {
+    margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .pokemon--search {

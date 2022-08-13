@@ -5,17 +5,13 @@
 .Container--Card:hover .card--pokemon {
     margin-left: -150px;
     opacity: 1;
-}
-
-.Container--Card:hover .card--info {
-    opacity: 1;
+    box-shadow: 4px 4px 5px #00000041;
 }
 
 .card--pokemon {
     width: 209px;
     height: 300px;
     border-radius: 26px;
-    box-shadow: 13px 17px 15px #00000041;
     border: 10px solid;
     position: relative;
     transition: all ease 0.3s .5s;
@@ -28,23 +24,29 @@
     left: 0px;
     display: block;
     border-radius: 26px;
-    box-shadow: 4px 4px 5px #00000041;
+    box-shadow: 13px 17px 15px #00000041;
     width: 209px;
     height: 300px;
     padding-left: 47px;
     z-index: 1;
-    transition: all ease 0.3s;
-    opacity: 0;
 }
 
 .card--info h2 {
     text-align: center;
     font-size: 20px;
-    margin: 10px 0px 30px 0px;
+    margin: 22px 0px 15px 5px;
 }
 
 .card--info p {
-    margin-left: 16px;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0px 0px 9px 18px;
+    letter-spacing: 1px;
+}
+
+.card--info p span {
+    color: #00687c;
 }
 
 .card--image {
@@ -251,4 +253,17 @@
 
 .fairy ~ .card--info {
     background-color: #e49ada;
+}
+
+.ground {
+    background: url('https://api-pokemon-teste-mandarin.herokuapp.com/backgrounds/ground.png');
+    border-color: #c0880ede;
+}
+
+.ground .card--description {
+    background-color: #c0880ede;
+}
+
+.ground ~ .card--info {
+    background-color: #f5cc75c7;
 }
